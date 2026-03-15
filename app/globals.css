@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #CCFF00;
+  --accent-hover: #B8E600;
+  --background: #1A1A1A;
+  --card: #2A2A2A;
+  --border: #3A3A3A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1A1A1A; }
+::-webkit-scrollbar-thumb { background: #3A3A3A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4A4A4A; }
+
+/* Reusable component classes */
+.btn-primary {
+  @apply bg-[#CCFF00] text-black font-semibold px-4 py-2.5 rounded-lg
+         hover:bg-[#B8E600] active:scale-[0.98] transition-all duration-150
+         disabled:opacity-50 disabled:cursor-not-allowed
+         min-h-[44px] inline-flex items-center justify-center gap-2;
+}
+.btn-secondary {
+  @apply bg-[#2A2A2A] text-white font-medium px-4 py-2.5 rounded-lg border border-[#3A3A3A]
+         hover:border-[#CCFF00]/50 hover:bg-[#333] active:scale-[0.98] transition-all duration-150
+         min-h-[44px] inline-flex items-center justify-center gap-2;
+}
+.card {
+  @apply bg-[#2A2A2A] rounded-2xl border border-[#3A3A3A];
+}
+.input-field {
+  @apply w-full bg-[#1A1A1A] border border-[#3A3A3A] rounded-lg px-3 py-2.5
+         text-white placeholder:text-[#A0A0A0]
+         focus:outline-none focus:border-[#CCFF00] focus:ring-1 focus:ring-[#CCFF00]/30
+         transition-colors duration-150 min-h-[44px];
+}
+
+/* Ensure all lime buttons always have black text — no exceptions */
+.bg-\[\#CCFF00\],
+[class*="bg-[#CCFF00]"] {
+  color: #000000 !important;
+}
+
+/* Prevent any inherited gradient from overriding button legibility */
+a.btn-primary,
+button.btn-primary {
+  background: #CCFF00 !important;
+  color: #000000 !important;
+}
+
+/* Legal page prose typography */
+.prose-legal {
+  color: #D0D0D0;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.prose-legal h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-top: 2.5rem;
+  margin-bottom: 0.875rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #1E1E1E;
+  letter-spacing: -0.01em;
+}
+
+.prose-legal h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.prose-legal h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #E0E0E0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-legal p {
+  margin-bottom: 1rem;
+  color: #A0A0A0;
+}
+
+.prose-legal strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.prose-legal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.prose-legal ul li {
+  padding-left: 1.25rem;
+  position: relative;
+  color: #A0A0A0;
+  margin-bottom: 0.5rem;
+}
+
+.prose-legal ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #CCFF00;
+}
+
+.prose-legal a {
+  color: #CCFF00;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.prose-legal a:hover {
+  color: #B8E600;
+}
+
+.prose-legal .legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.prose-legal .legal-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-bottom: 1px solid #3A3A3A;
+}
+
+.prose-legal .legal-table td {
+  padding: 0.75rem 1rem;
+  color: #A0A0A0;
+  border-bottom: 1px solid #1E1E1E;
+  vertical-align: top;
+}
+
+.prose-legal .legal-table tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-legal .uppercase-block {
+  color: #888;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: #111;
+  border: 1px solid #2A2A2A;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.prose-legal .callout {
+  border-left: 2px solid #CCFF00;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  background: rgba(204, 255, 0, 0.05);
+  border-radius: 0 6px 6px 0;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+  color: #A0A0A0;
+}
