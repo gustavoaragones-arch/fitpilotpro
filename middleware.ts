@@ -37,6 +37,14 @@ function isDashboardPath(pathname: string): boolean {
   );
 }
 
+function isOnboardingPath(pathname: string): boolean {
+  return pathname.startsWith("/onboarding");
+}
+
+function isProtectedPath(pathname: string): boolean {
+  return isDashboardPath(pathname) || isOnboardingPath(pathname);
+}
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request: { headers: request.headers } });
 
@@ -71,7 +79,7 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getSession();
   const { pathname } = request.nextUrl;
 
-  if (!session && !isPublicPath(pathname) && isDashboardPath(pathname)) {
+  if (!session && !isPublicPath(pathname) && isProtectedPath(pathname)) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

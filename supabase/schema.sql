@@ -19,6 +19,8 @@ CREATE TABLE profiles (
   trial_ends_at TIMESTAMPTZ DEFAULT (NOW() + INTERVAL '14 days'),
   mileage_rate DECIMAL(5,4) DEFAULT 0.67,
   default_session_duration INTEGER DEFAULT 60,
+  onboarding_completed BOOLEAN DEFAULT FALSE,
+  role TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -262,3 +264,7 @@ CREATE INDEX idx_sessions_trainer ON sessions(trainer_id);
 CREATE INDEX idx_sessions_date ON sessions(trainer_id, scheduled_at);
 CREATE INDEX idx_payments_trainer ON payments(trainer_id);
 CREATE INDEX idx_progress_client ON progress_records(client_id);
+
+-- Migration: add onboarding columns to profiles if already deployed without them
+-- ALTER TABLE profiles ADD COLUMN IF NOT EXISTS onboarding_completed BOOLEAN DEFAULT FALSE;
+-- ALTER TABLE profiles ADD COLUMN IF NOT EXISTS role TEXT;

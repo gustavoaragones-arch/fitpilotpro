@@ -39,7 +39,7 @@ export interface Profile {
   updated_at: string;
 }
 
-export interface Client {
+export type Client = {
   id: string;
   trainer_id: string;
   full_name: string;
@@ -52,19 +52,19 @@ export interface Client {
   emergency_contact_phone: string | null;
   goal: string | null;
   health_conditions: string | null;
-  fitness_level: FitnessLevel | null;
-  preferred_location: LocationType | null;
+  fitness_level: string | null;
+  preferred_location: string | null;
   session_price: number;
   sessions_per_week: number;
-  payment_model: "per_session" | "monthly" | "upfront";
-  attendance_rate: number;
-  tier: ClientTier;
-  tier_score: number;
+  payment_model: string;
+  attendance_rate: number | null;
+  tier: "diamond" | "gold" | "silver";
+  tier_score: number | null;
   status: "active" | "inactive" | "prospect";
   notes: string | null;
   created_at: string;
   updated_at: string;
-}
+};
 
 export interface Exercise {
   id: string;
@@ -115,7 +115,7 @@ export interface Routine {
   routine_exercises?: RoutineExercise[];
 }
 
-export interface Session {
+export type Session = {
   id: string;
   trainer_id: string;
   client_id: string | null;
@@ -123,21 +123,24 @@ export interface Session {
   scheduled_at: string;
   duration_minutes: number;
   location: string | null;
-  location_type: LocationType | null;
-  price: number;
-  payment_status: PaymentStatus;
+  location_type: string | null;
+  price: number | null;
+  payment_status: "paid" | "unpaid" | "waived";
   payment_method: string | null;
-  status: SessionStatus;
+  status: "scheduled" | "completed" | "cancelled" | "no_show";
   cancellation_reason: string | null;
   notes: string | null;
   trainer_notes: string | null;
   is_recurring: boolean;
   recurrence_rule: string | null;
+  recurrence_group_id: string | null;
   created_at: string;
   updated_at: string;
-  client?: Client;
-  routine?: Routine;
-}
+};
+
+export type SessionWithClient = Session & {
+  clients: Pick<Client, "id" | "full_name" | "tier"> | null;
+};
 
 export interface Payment {
   id: string;

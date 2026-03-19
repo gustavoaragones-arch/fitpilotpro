@@ -1,7 +1,10 @@
+import { Suspense } from "react";
+import { SettingsView } from "@/components/settings/SettingsView";
+
 export default function SettingsPage() {
   return (
-    <div className="flex items-center justify-center h-64">
-      <p className="text-[#A0A0A0]">Page coming soon</p>
-    </div>
+    <Suspense>
+      <SettingsView />
+    </Suspense>
   );
 }

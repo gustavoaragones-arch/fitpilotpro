@@ -1,30 +1,38 @@
+"use client";
+
+import { useState } from "react";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { cn } from "@/lib/utils";
 
-export default async function DashboardLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  if (!session) redirect("/login");
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   return (
     <QueryProvider>
-      <div className="min-h-screen bg-[#1A1A1A] flex">
-        <div className="hidden md:flex">
-          <Sidebar />
+      <div className="min-h-screen bg-[#1A1A1A]">
+        <div className="hidden md:block">
+          <Sidebar onExpandChange={setSidebarExpanded} />
         </div>
 
-        <div className="flex-1 md:ml-[220px] flex flex-col min-h-screen">
-          <main className="flex-1 p-6 pb-24 md:pb-6">{children}</main>
-        </div>
+        <main
+          className={cn(
+            "min-h-screen transition-[margin] duration-200 ease-out",
+            "hidden md:block",
+            sidebarExpanded ? "ml-[220px]" : "ml-16"
+          )}
+        >
+          <div className="px-8 py-8">{children}</div>
+        </main>
+
+        <main className="md:hidden min-h-screen">
+          <div className="px-4 py-6 pb-24">{children}</div>
+        </main>
 
         <div className="md:hidden">
           <MobileNav />

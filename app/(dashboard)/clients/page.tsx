@@ -1,7 +1,7 @@
+"use client";
+
+import { ClientsView } from "@/components/clients/ClientsView";
+
 export default function ClientsPage() {
-  return (
-    <div className="flex items-center justify-center h-64">
-      <p className="text-[#A0A0A0]">Page coming soon</p>
-    </div>
-  );
+  return <ClientsView />;
 }

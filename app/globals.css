@@ -54,7 +54,7 @@ body {
          transition-colors duration-150 min-h-[44px];
 }
 
-/* Ensure all lime buttons always have black text — no exceptions */
+/* Force pure black text on all lime accent backgrounds */
 .bg-\[\#CCFF00\],
 [class*="bg-[#CCFF00]"] {
   color: #000000 !important;
