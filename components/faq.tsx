@@ -6,29 +6,29 @@ import { IconArrowRight } from "@/icons/arrow-right";
 
 const FAQs = [
   {
-    question: "What models does AI Assist leverage?",
+    question: "How does the client tier system work?",
     answer:
-      "AI Assist uses state-of-the-art language models to provide accurate and helpful responses to your queries.",
+      "Tiers are calculated automatically based on session price, training frequency, and payment model. Diamond clients score highest across all three factors, followed by Gold and Silver. You can't manually set tiers — the system keeps it objective.",
   },
   {
-    question: "How does AI Assist use my data?",
+    question: "Can I import my existing clients?",
     answer:
-      "Your data is handled with strict security measures. Any information used to prompt AI Assist is shared with our AI provider solely for generating responses. Data is automatically deleted within 48 hours of a request.",
+      "Yes. You can add clients manually or we can help you bulk-import from a CSV. Each client profile stores contact info, goals, health conditions, session pricing, and attendance history.",
   },
   {
-    question: "How accurate are AI Assist's responses?",
+    question: "Is my client data secure?",
     answer:
-      "AI Assist strives for high accuracy by leveraging advanced AI models and continuous improvements. However, we recommend verifying critical information from multiple sources.",
+      "All data is stored in Supabase (PostgreSQL) with row-level security enabled — only you can access your clients. Data is encrypted at rest and in transit. We never sell or share your data with third parties.",
   },
   {
-    question: "How much does AI Assist cost?",
+    question: "What happens when I reach my client limit on the Free plan?",
     answer:
-      "We offer flexible pricing plans to suit different needs. Contact our sales team for detailed pricing information.",
+      "The Free plan supports up to 5 active clients. When you hit the limit, you'll be prompted to upgrade to Professional or higher to add more. Your existing clients and data are never removed.",
   },
   {
-    question: "How do I get access to AI Assist?",
+    question: "Can I cancel anytime?",
     answer:
-      "You can sign up for AI Assist through our website. We offer both individual and enterprise access options.",
+      "Yes, absolutely. You can cancel your subscription at any time from the Settings page. You'll keep access until the end of your current billing period, and your data remains available for 30 days after cancellation.",
   },
 ];
 export function FrequentlyAskedQuestions() {
@@ -47,8 +47,7 @@ export function FrequentlyAskedQuestions() {
         </h2>
       </div>
       <p className="max-w-lg text-sm  text-center mx-auto mt-4 text-neutral-400 px-4 md:px-0">
-        Simplify crypto investing, trading, and portfolio management with
-        cutting-edge tools designed for everyone—from beginners to pros.
+        Everything you need to know about FitPilot Pro.
       </p>
       <div className="mt-10 md:mt-20 max-w-3xl mx-auto divide-y divide-neutral-800">
         {FAQs.map((faq, index) => (

@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { motion } from "motion/react";
-import Image from "next/image";
 
 export function Testimonials() {
   return (
@@ -32,27 +31,27 @@ export function Testimonials() {
           <TestimonialCard
             name="Sarah K."
             role="Personal Trainer, Austin TX"
-            image="/manu_arora.jpg"
+            initials="SK"
             quote="I used to spend 3 hours every Sunday planning my schedule and tracking payments in spreadsheets. FitPilot killed that. Now it takes me 20 minutes."
           />
           <TestimonialCard
             name="Marcus T."
             role="Mobile Trainer, Los Angeles CA"
-            image="/kishore_gunnam.jpg"
+            initials="MT"
             quote="The route optimizer alone saves me $200/month in gas. That pays for the subscription 10x over."
             className="lg:mt-[50px]"
           />
           <TestimonialCard
             name="Priya M."
             role="Strength Coach, Toronto"
-            image="/kishore_gunnam.jpg"
+            initials="PM"
             quote="My Diamond clients get better service because I actually know who they are. Retention went up 40% in 3 months."
             className="lg:mt-[-50px]"
           />
           <TestimonialCard
             name="David R."
             role="CrossFit Coach, Miami FL"
-            image="/manu_arora.jpg"
+            initials="DR"
             quote="The AI scheduler figured out a weekly plan for my 12 clients that I never would have built manually. It's scary good."
           />
         </div>
@@ -64,13 +63,13 @@ export function Testimonials() {
 const TestimonialCard = ({
   name,
   role,
-  image,
+  initials,
   quote,
   className,
 }: {
   name: string;
   role: string;
-  image: string;
+  initials: string;
   quote: string;
   className?: string;
 }) => {
@@ -86,8 +85,8 @@ const TestimonialCard = ({
       )}
     >
       <div className="flex items-center gap-4 mb-8">
-        <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-neutral-700">
-          <Image src={image} alt={name} fill className="object-cover" />
+        <div className="w-14 h-14 rounded-full bg-[#CCFF00]/15 flex items-center justify-center flex-shrink-0">
+          <span className="text-[#CCFF00] font-bold text-lg">{initials}</span>
         </div>
         <div>
           <h3 className="text-xl font-semibold text-white">{name}</h3>
