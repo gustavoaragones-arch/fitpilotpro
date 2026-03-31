@@ -73,6 +73,8 @@ const UPGRADE_PATH: Record<string, string> = {
 export function SubscriptionTab() {
   const { tier, profile, isLoading } = useSubscription();
   const [portalLoading, setPortalLoading] = useState(false);
+  const [upgradeLoading, setUpgradeLoading] = useState(false);
+  const [upgradeError, setUpgradeError] = useState<string | null>(null);
 
   const currentPlan = PLAN_DETAILS[tier] ?? PLAN_DETAILS.free;
   const nextTierId = UPGRADE_PATH[tier];
@@ -84,10 +86,41 @@ export function SubscriptionTab() {
       const res = await fetch("/api/stripe/create-portal", {
         method: "POST",
       });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const { url } = await res.json();
-      if (url) window.location.href = url;
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error("No portal URL returned");
+      }
     } catch {
       setPortalLoading(false);
+    }
+  };
+
+  const handleUpgrade = async (priceId: string) => {
+    if (!priceId) {
+      alert("Upgrade temporarily unavailable. Please contact support@fitpilotpro.app");
+      return;
+    }
+    setUpgradeError(null);
+    setUpgradeLoading(true);
+    try {
+      const res = await fetch("/api/stripe/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ priceId }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { url } = await res.json();
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch {
+      setUpgradeLoading(false);
+      setUpgradeError("Unable to start checkout. Please try again or contact support.");
     }
   };
 
@@ -195,12 +228,15 @@ export function SubscriptionTab() {
           </ul>
 
           <button
-            onClick={handleManage}
-            disabled={portalLoading}
+            onClick={() => handleUpgrade("")}
+            disabled={upgradeLoading}
             className="w-full bg-[#CCFF00] text-[#000000] font-semibold text-sm py-2.5 rounded-lg hover:bg-[#B8E600] active:scale-[0.98] transition-all min-h-[44px] disabled:opacity-60"
           >
-            {portalLoading ? "Loading..." : `Upgrade to ${nextPlan.name}`}
+            {upgradeLoading ? "Loading..." : `Upgrade to ${nextPlan.name}`}
           </button>
+          {upgradeError && (
+            <p className="text-xs text-[#EF4444] mt-2 text-center">{upgradeError}</p>
+          )}
         </div>
       )}
     </div>

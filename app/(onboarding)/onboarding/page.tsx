@@ -125,7 +125,7 @@ function StepRole({
             className={cn(
               "w-full flex items-center justify-between p-4 rounded-xl border transition-all text-left min-h-[72px]",
               data.role === role.value
-                ? "border-[#CCFF00] bg-[#CCFF00]/5"
+                ? "border-[#CCFF00] bg-[#CCFF00]/10"
                 : "border-[#2A2A2A] bg-[#1A1A1A] hover:border-[#3A3A3A]"
             )}
           >
@@ -217,7 +217,7 @@ function StepGoals({
               className={cn(
                 "w-full flex items-center gap-4 p-4 rounded-xl border transition-all text-left min-h-[64px]",
                 selected
-                  ? "border-[#CCFF00] bg-[#CCFF00]/5"
+                  ? "border-[#CCFF00] bg-[#CCFF00]/10"
                   : "border-[#2A2A2A] bg-[#1A1A1A] hover:border-[#3A3A3A]"
               )}
             >
@@ -307,7 +307,7 @@ function StepBusiness({
                 className={cn(
                   "w-full flex items-center justify-between px-4 py-3 rounded-lg border transition-all text-left min-h-[44px]",
                   data.client_count === count
-                    ? "border-[#CCFF00] bg-[#CCFF00]/5 text-white"
+                    ? "border-[#CCFF00] bg-[#CCFF00]/10 text-white font-semibold"
                     : "border-[#2A2A2A] bg-[#1A1A1A] text-[#A0A0A0] hover:border-[#3A3A3A] hover:text-white"
                 )}
               >

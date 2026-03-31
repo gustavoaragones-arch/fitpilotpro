@@ -30,6 +30,8 @@ export function useMonthSessions(year: number, month: number) {
 
 export function useDaySessions(date: Date) {
   const supabase = createClient();
+  // setHours operates in local time, so these boundaries are local midnight → 23:59 local.
+  // .toISOString() then converts to UTC with the correct offset — session times display correctly.
   const dayStart = new Date(date);
   dayStart.setHours(0, 0, 0, 0);
   const dayEnd = new Date(date);

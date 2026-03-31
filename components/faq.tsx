@@ -8,27 +8,37 @@ const FAQs = [
   {
     question: "How does the client tier system work?",
     answer:
-      "Tiers are calculated automatically based on session price, training frequency, and payment model. Diamond clients score highest across all three factors, followed by Gold and Silver. You can't manually set tiers — the system keeps it objective.",
+      "FitPilot Pro automatically classifies your clients into Diamond, Gold, or Silver tiers based on their session price, frequency, and payment model. Diamond clients (your top revenue generators) get priority sorting and visual highlighting. The algorithm updates automatically whenever you edit a client's pricing — no manual input needed.",
   },
   {
-    question: "Can I import my existing clients?",
+    question: "Can I use FitPilot Pro on my phone?",
     answer:
-      "Yes. You can add clients manually or we can help you bulk-import from a CSV. Each client profile stores contact info, goals, health conditions, session pricing, and attendance history.",
+      "Yes. FitPilot Pro is a Progressive Web App — open it in your mobile browser and add it to your home screen for a native app experience. It's fully optimized for mobile with tap-friendly controls and a bottom navigation bar on smaller screens.",
   },
   {
     question: "Is my client data secure?",
     answer:
-      "All data is stored in Supabase (PostgreSQL) with row-level security enabled — only you can access your clients. Data is encrypted at rest and in transit. We never sell or share your data with third parties.",
+      "All data is stored in Supabase with Row Level Security — meaning your clients' data is only accessible by your account. Data is encrypted in transit (TLS) and at rest. We never share or sell client data to third parties.",
   },
   {
-    question: "What happens when I reach my client limit on the Free plan?",
+    question: "What happens when I hit the 5-client limit on the Free plan?",
     answer:
-      "The Free plan supports up to 5 active clients. When you hit the limit, you'll be prompted to upgrade to Professional or higher to add more. Your existing clients and data are never removed.",
+      "You'll see an upgrade prompt when you add your 5th client. Your existing clients and all their data remain accessible. You can upgrade to Professional at any time to unlock unlimited clients — no data is lost.",
   },
   {
-    question: "Can I cancel anytime?",
+    question: "Can I cancel my subscription anytime?",
     answer:
-      "Yes, absolutely. You can cancel your subscription at any time from the Settings page. You'll keep access until the end of your current billing period, and your data remains available for 30 days after cancellation.",
+      "Yes. Cancel anytime from Settings → Subscription → Manage Billing. Your access continues until the end of your current billing period. No cancellation fees, no questions asked.",
+  },
+  {
+    question: "Does the route optimizer work for online trainers?",
+    answer:
+      "Route optimization is designed for mobile trainers who visit clients in person. If you train primarily online, you'll get more value from the scheduling, analytics, and client management features — the route optimizer simply won't show suggestions for virtual sessions.",
+  },
+  {
+    question: "How does Travel Intelligence work when booking sessions?",
+    answer:
+      "When you open the Schedule Session modal and select a client, FitPilot Pro automatically calculates estimated drive time from your previous session to the new client, and from the new client to your next session. It shows a routing quality indicator (green/yellow/red) and a one-tap button to open the full route in Google Maps.",
   },
 ];
 export function FrequentlyAskedQuestions() {
